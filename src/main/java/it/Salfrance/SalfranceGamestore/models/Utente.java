@@ -18,18 +18,23 @@ public class Utente {
     //@NotBlank(message="la data di nascita deve essere per forza inserita")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataDiNascita;
+
     @NotBlank(message="è obbligatorio inserire il nome")
     @Length(min = 3, max = 20)
     private String nome;
+
     @NotBlank(message="è obbligatorio inserire il cognome")
     @Length(min = 3, max = 20)
     private String cognome;
+
     @Length(min = 3, max = 20)
     @NotBlank(message="è obbligatorio inserire la tua email")
     private String email;
+
     @Length(min = 3, max = 15)
     @NotBlank(message="è obbligatorio inserire il tuo username")
     private String username;
+
     @Length(min = 3, max = 15)
     @NotBlank(message="è obbligatorio inserire la password")
     private String password;

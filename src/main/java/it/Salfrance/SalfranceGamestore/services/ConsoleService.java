@@ -15,22 +15,12 @@ public class ConsoleService {
         this.consoleRepository = consoleRepository;
     }
 
-    public Console saveConsole(Console console) {
-        Console console1 = new Console();
-        console1.setMarca(console.getMarca());
-        console1.setModello(console.getModello());
-        console1.setColors(console.getColors());
-        console1.setPrezzo(console.getPrezzo());
-        console1.setDescrizione(console.getDescrizione());
-        console1.setHardDisk(console.getHardDisk());
-        console1.setQuantitaDisponibile(console.getQuantitaDisponibile() + 1);
-        console1.setUrlImmagine(console.getUrlImmagine());
-        return consoleRepository.save(console1);
-    }
+    public Console saveConsole(Console console) { return this.consoleRepository.save(console); }
 
     public List<Console> getAll(){
         return consoleRepository.findAll();
     }
+
     public Optional<Console>  getConsoleById(Long id){
       return consoleRepository.findById(id);
     }
