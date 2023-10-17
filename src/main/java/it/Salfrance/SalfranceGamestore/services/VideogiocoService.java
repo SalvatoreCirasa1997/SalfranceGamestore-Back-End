@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Videogioco;
 import it.Salfrance.SalfranceGamestore.repositories.VideogiocoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,7 +22,10 @@ public class VideogiocoService {
 
     public void removeVideogioco (Long id){this.videogiocoRepository.deleteById(id);}
 
-    public Iterable<Videogioco> getAllVideogioco () {return this.videogiocoRepository.findAll();}
+    public Page<Videogioco> getAll (Pageable pageable) {
+        PageRequest pages = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        return this.videogiocoRepository.findAll(pages);
+    }
 
     public Optional<Videogioco> getVideogiocoById (Long id){return this.videogiocoRepository.findById(id);}
 

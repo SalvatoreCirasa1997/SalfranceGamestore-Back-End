@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Console;
 import it.Salfrance.SalfranceGamestore.repositories.ConsoleRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +20,9 @@ public class ConsoleService {
 
     public Console saveConsole(Console console) { return this.consoleRepository.save(console); }
 
-    public List<Console> getAll(){
-        return consoleRepository.findAll();
+    public Page<Console> findAll(Pageable pageable){
+        PageRequest pages = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        return this.consoleRepository.findAll(pageable);
     }
 
     public Optional<Console>  getConsoleById(Long id){

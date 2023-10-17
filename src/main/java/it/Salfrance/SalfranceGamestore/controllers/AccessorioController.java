@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Accessorio;
 import it.Salfrance.SalfranceGamestore.services.AccessorioService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,10 +22,10 @@ public class AccessorioController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Iterable<Accessorio>> getAccessorio(){
+    public ResponseEntity <Page<Accessorio>> getAccessorio( @PageableDefault(page=0,size = 8)
+                                               Pageable pageable){
         try {
-            Iterable<Accessorio> accessori = this.accessorioService.getAllAccessorio();
-            return new ResponseEntity<>(accessori, HttpStatus.OK);
+            return new ResponseEntity<>(this.accessorioService.findAll(pageable), HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -32,8 +35,7 @@ public class AccessorioController {
     @PostMapping("/new")
     public ResponseEntity<Accessorio> addAccessorio(@RequestBody Accessorio accessorio) {
         try {
-            Accessorio accessorioAdded = this.accessorioService.addAccessorio(accessorio);
-            return new ResponseEntity<>(accessorioAdded, HttpStatus.CREATED);
+            return new ResponseEntity<>(this.accessorioService.addAccessorio(accessorio), HttpStatus.CREATED);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

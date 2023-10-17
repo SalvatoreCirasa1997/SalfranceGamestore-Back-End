@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Console;
 import it.Salfrance.SalfranceGamestore.services.ConsoleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +26,10 @@ public class ConsoleController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/getall")
+    ResponseEntity<Page<Console>> getAll(@PageableDefault(page=0,size = 8) Pageable pageable){
+        return new ResponseEntity<>(consoleService.findAll(pageable),HttpStatus.OK);
+    }
     @GetMapping("/getbyid")
     ResponseEntity<Optional<Console>> getConsoleById(@RequestParam Long id){
         consoleService.getConsoleById(id);

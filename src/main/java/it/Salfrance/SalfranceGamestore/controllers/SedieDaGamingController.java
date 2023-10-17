@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.SedieDaGaming;
 import it.Salfrance.SalfranceGamestore.services.SedieDaGamingService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,10 @@ public class SedieDaGamingController {
         this.sediadagamingservice = sediadagamingservice;
     }
 
+    @GetMapping("/getall")
+    ResponseEntity<Page<SedieDaGaming>> getAll(@PageableDefault(page=0,size = 8) Pageable pageable){
+        return new ResponseEntity<>(this.sediadagamingservice.getAll(pageable),HttpStatus.OK);
+    }
     @PostMapping("/addsedia")
     ResponseEntity<SedieDaGaming> addSedia(@RequestBody SedieDaGaming sedieDaGaming){
         sediadagamingservice.saveSediaDaGaming(sedieDaGaming);

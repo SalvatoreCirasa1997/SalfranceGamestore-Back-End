@@ -3,6 +3,9 @@ package it.Salfrance.SalfranceGamestore.controllers;
 import it.Salfrance.SalfranceGamestore.models.Utente;
 import it.Salfrance.SalfranceGamestore.services.UtenteConsole;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +28,10 @@ public class UtenteController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/getall")
+    ResponseEntity<Page<Utente>> getAll(@PageableDefault(page=0,size = 8) Pageable pageable){
+        return new ResponseEntity<>(this.utenteConsole.getAll(pageable),HttpStatus.OK);
+    }
     @GetMapping("/getutentebyid")
     ResponseEntity<Optional<Utente>> getById(@RequestParam Long id){
         utenteConsole.getUtenteById(id);

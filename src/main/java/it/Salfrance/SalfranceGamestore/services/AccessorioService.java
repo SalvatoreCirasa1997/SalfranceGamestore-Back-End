@@ -2,6 +2,11 @@ package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Accessorio;
 import it.Salfrance.SalfranceGamestore.repositories.AccessorioRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +22,12 @@ public class AccessorioService {
     public Accessorio addAccessorio (Accessorio accessorio){return this.accessorioRepository.save(accessorio);}
 
     public void removeAccessorio (Long id){this.accessorioRepository.deleteById(id);}
+
+    public Page<Accessorio> findAll(Pageable pageable){
+        PageRequest pages = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        Page<Accessorio> todos=accessorioRepository.findAll(pages);
+        return todos;
+    }
 
     public Iterable<Accessorio> getAllAccessorio () {return this.accessorioRepository.findAll();}
 

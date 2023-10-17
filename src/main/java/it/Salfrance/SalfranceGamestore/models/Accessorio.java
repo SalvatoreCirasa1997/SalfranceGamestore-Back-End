@@ -24,7 +24,6 @@ public class Accessorio {
     private String nome;
 
     @Column
-    @NotBlank(message = "selezionare una tipologia")
     @Enumerated(EnumType.STRING) //enum
     private TipologiaAccessorio tipologia;
 

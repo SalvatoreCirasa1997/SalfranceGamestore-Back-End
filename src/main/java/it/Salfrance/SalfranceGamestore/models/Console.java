@@ -29,7 +29,6 @@ public class Console {
     @Enumerated(EnumType.STRING)
     private TipologiaColore colore;
 
-    @Min(value = 100, message = "Il valore deve essere maggiore di zero")
     private int hardDisk;
 
     private String urlImmagine;

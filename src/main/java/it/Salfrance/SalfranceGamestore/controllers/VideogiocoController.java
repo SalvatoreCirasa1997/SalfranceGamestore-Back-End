@@ -2,6 +2,8 @@ package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Videogioco;
 import it.Salfrance.SalfranceGamestore.services.VideogiocoService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +22,16 @@ public class VideogiocoController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Iterable<Videogioco>> getVideogiochi(){
+    public ResponseEntity<Iterable<Videogioco>> getVideogiochi(@PageableDefault(page=0,size=8) Pageable pageable){
         try {
-            Iterable<Videogioco> videogiochi = this.videogiocoService.getAllVideogioco();
+            Iterable<Videogioco> videogiochi = this.videogiocoService.getAll(pageable);
             return new ResponseEntity<>(videogiochi, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @PostMapping("/new")
     public ResponseEntity<?> addVideogioco(@RequestBody Videogioco videogioco) {
