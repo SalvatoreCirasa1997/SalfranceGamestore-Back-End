@@ -1,7 +1,7 @@
 package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Console;
-import it.Salfrance.SalfranceGamestore.repository.ConsoleRepository;
+import it.Salfrance.SalfranceGamestore.repositories.ConsoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Utente;
-import it.Salfrance.SalfranceGamestore.repository.UtenteRepository;
 import it.Salfrance.SalfranceGamestore.services.UtenteConsole;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

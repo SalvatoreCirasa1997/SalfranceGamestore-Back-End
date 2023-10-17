@@ -1,4 +1,4 @@
-package it.Salfrance.SalfranceGamestore.repository;
+package it.Salfrance.SalfranceGamestore.repositories;
 
 import it.Salfrance.SalfranceGamestore.models.SedieDaGaming;
 import org.springframework.data.jpa.repository.JpaRepository;

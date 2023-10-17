@@ -1,7 +1,7 @@
 package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Utente;
-import it.Salfrance.SalfranceGamestore.repository.UtenteRepository;
+import it.Salfrance.SalfranceGamestore.repositories.UtenteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

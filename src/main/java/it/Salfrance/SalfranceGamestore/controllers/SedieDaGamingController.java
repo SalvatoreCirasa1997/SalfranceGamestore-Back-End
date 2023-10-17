@@ -1,10 +1,8 @@
 package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.SedieDaGaming;
-import it.Salfrance.SalfranceGamestore.repository.SedieDaGamingRepository;
 import it.Salfrance.SalfranceGamestore.services.SedieDaGamingService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

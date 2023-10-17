@@ -1,7 +1,7 @@
 package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.SedieDaGaming;
-import it.Salfrance.SalfranceGamestore.repository.SedieDaGamingRepository;
+import it.Salfrance.SalfranceGamestore.repositories.SedieDaGamingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
