@@ -1,9 +1,9 @@
 package it.Salfrance.SalfranceGamestore.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import it.Salfrance.SalfranceGamestore.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -39,5 +39,6 @@ public class Utente {
     @NotBlank(message="è obbligatorio inserire la password")
     private String password;
 
-
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

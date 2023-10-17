@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public class UtenteConsole {
+public class UtenteService {
     private final UtenteRepository utenteRepository;
 
-    public UtenteConsole(UtenteRepository utenteRepository) {
+    public UtenteService(UtenteRepository utenteRepository) {
         this.utenteRepository = utenteRepository;
     }
 

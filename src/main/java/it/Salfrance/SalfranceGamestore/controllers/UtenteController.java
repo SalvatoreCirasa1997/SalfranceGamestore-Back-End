@@ -1,7 +1,7 @@
 package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Utente;
-import it.Salfrance.SalfranceGamestore.services.UtenteConsole;
+import it.Salfrance.SalfranceGamestore.services.UtenteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,9 @@ import java.util.Optional;
 @RequestMapping("/utente")
 public class UtenteController {
 
-    private final UtenteConsole utenteConsole;
+    private final UtenteService utenteConsole;
 
-    public UtenteController(UtenteConsole utenteConsole) {
+    public UtenteController(UtenteService utenteConsole) {
         this.utenteConsole = utenteConsole;
     }
 
