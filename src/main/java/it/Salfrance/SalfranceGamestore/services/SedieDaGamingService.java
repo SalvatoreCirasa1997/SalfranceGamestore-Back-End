@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.SedieDaGaming;
 import it.Salfrance.SalfranceGamestore.repositories.SedieDaGamingRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -36,6 +39,11 @@ public class SedieDaGamingService {
        else {
            return "non c'è una sedia con quell id";
         }
+    }
+
+    public Page<SedieDaGaming> getAll(Pageable pageable){
+        PageRequest pages = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        return this.sedieDaGamingRepository.findAll(pages);
     }
 }
 

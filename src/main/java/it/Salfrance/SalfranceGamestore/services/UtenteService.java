@@ -2,6 +2,9 @@ package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Utente;
 import it.Salfrance.SalfranceGamestore.repositories.UtenteRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -34,5 +37,10 @@ public class UtenteService {
             return "hai eliminato l'utente con quell id";
         }
         return "non hai un utente con quell id";
+    }
+
+    public Page<Utente> getAll(Pageable pageable){
+        PageRequest pages = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        return this.utenteRepository.findAll(pages);
     }
 }
