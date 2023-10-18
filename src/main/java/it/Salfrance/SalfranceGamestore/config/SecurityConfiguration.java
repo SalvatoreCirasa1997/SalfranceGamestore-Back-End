@@ -1,6 +1,7 @@
 package it.Salfrance.SalfranceGamestore.config;
 
 import it.Salfrance.SalfranceGamestore.auth.JwtAuthenticationFilter;
+import it.Salfrance.SalfranceGamestore.enums.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -20,15 +21,15 @@ public class SecurityConfiguration {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.authenticationProvider = authenticationProvider;
     }
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(authorizeConfig->
-                        authorizeConfig.requestMatchers("/public")
-                                .permitAll()
-                                .requestMatchers("/auth/**")
-                                .permitAll()
-                                .requestMatchers("/error")
-                                .permitAll()
+                        authorizeConfig.requestMatchers("/public").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/error").permitAll()
+                                .requestMatchers("/accessorio/admin/**").hasRole(Role.ADMIN.getRuoloTrimmed())
+                                .requestMatchers("/user/**").hasRole(Role.USER.getRuoloTrimmed())
                                 .anyRequest()
                                 .authenticated()
                         )
