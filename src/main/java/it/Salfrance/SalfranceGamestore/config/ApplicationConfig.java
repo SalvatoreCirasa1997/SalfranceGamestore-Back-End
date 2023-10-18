@@ -19,7 +19,8 @@ public class ApplicationConfig {
         UtenteService = utenteService;
     }
 
-    private PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder();
+    @Bean
+    PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder();
     }
 
     @Bean

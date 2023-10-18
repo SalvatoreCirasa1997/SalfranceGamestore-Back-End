@@ -20,7 +20,7 @@ import java.util.function.Function;
 public class JwtService {
     private final String Secret_key;
 
-    public JwtService(@Value("${SECRET_KEY}") String secretKey) { Secret_key = secretKey; }
+    public JwtService(@Value("${SECRET_KEY}")String secret_key) { Secret_key = secret_key; }
 
     private SecretKey getSignKey(){
         byte[] keyBytes = Decoders.BASE64.decode(Secret_key);
@@ -56,7 +56,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+10000))
+                .setExpiration(new Date(System.currentTimeMillis()+10000*60*31))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
