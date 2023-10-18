@@ -1,12 +1,16 @@
 package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Accessorio;
+import it.Salfrance.SalfranceGamestore.models.Utente;
 import it.Salfrance.SalfranceGamestore.services.AccessorioService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +26,7 @@ public class AccessorioController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<Accessorio>> getAccessorio(@PageableDefault(page=0,size = 8)
+    public ResponseEntity<Page<Accessorio>> getAccessorio( @PageableDefault(page=0,size = 8)
                                                           Pageable pageable){
         try {
             return new ResponseEntity<>(this.accessorioService.findAll(pageable), HttpStatus.OK);
@@ -32,13 +36,14 @@ public class AccessorioController {
         }
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<Accessorio> addAccessorio(@RequestBody Accessorio accessorio) {
+    @PostMapping("/admin/new")
+    public ResponseEntity<Accessorio> addAccessorio(UsernamePasswordAuthenticationToken auth, @RequestBody Accessorio accessorio)  {
         try {
-            Accessorio accessorioAdded = this.accessorioService.addAccessorio(accessorio);
+            Utente utente= (Utente) auth.getPrincipal();
+            Accessorio accessorioAdded = this.accessorioService.addAccessorio(utente,accessorio);
             return new ResponseEntity<>(accessorioAdded, HttpStatus.CREATED);
-
-        } catch (Exception e) {
+        }
+            catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

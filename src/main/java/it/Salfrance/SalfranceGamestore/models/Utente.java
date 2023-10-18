@@ -19,7 +19,7 @@ public class Utente implements UserDetails {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //@NotBlank(message="la data di nascita deve essere per forza inserita")
-    @JsonFormat(pattern = "dd/MM/yyyy")
+   // @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataDiNascita;
 
     @NotBlank(message="è obbligatorio inserire il nome")
