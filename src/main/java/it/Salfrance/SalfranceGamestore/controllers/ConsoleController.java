@@ -2,6 +2,7 @@ package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Console;
 import it.Salfrance.SalfranceGamestore.services.ConsoleService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,7 +22,7 @@ public class ConsoleController {
     }
 
     @PostMapping("/addconsole")
-    ResponseEntity<Console> addConsole(@RequestBody Console console){
+    ResponseEntity<Console> addConsole(@Valid @RequestBody Console console){
         consoleService.saveConsole(console);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -44,7 +45,7 @@ public class ConsoleController {
     }
 
     @PutMapping("/putconsole")
-    ResponseEntity<Console> putConsole(@RequestBody Console console){
+    ResponseEntity<Console> putConsole(@Valid@RequestBody Console console){
         consoleService.updateConsole(console);
         return  new ResponseEntity<>(HttpStatus.OK);
     }

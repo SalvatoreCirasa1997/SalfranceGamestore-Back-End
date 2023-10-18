@@ -3,6 +3,7 @@ package it.Salfrance.SalfranceGamestore.controllers;
 import it.Salfrance.SalfranceGamestore.models.Accessorio;
 import it.Salfrance.SalfranceGamestore.models.Utente;
 import it.Salfrance.SalfranceGamestore.services.AccessorioService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -36,8 +37,8 @@ public class AccessorioController {
         }
     }
 
-    @PostMapping("/admin/new")
-    public ResponseEntity<Accessorio> addAccessorio(UsernamePasswordAuthenticationToken auth, @RequestBody Accessorio accessorio)  {
+    @PostMapping("/new")
+    public ResponseEntity<Accessorio> addAccessorio(UsernamePasswordAuthenticationToken auth,@Valid @RequestBody Accessorio accessorio)  {
         try {
             Utente utente= (Utente) auth.getPrincipal();
             Accessorio accessorioAdded = this.accessorioService.addAccessorio(utente,accessorio);
@@ -66,7 +67,7 @@ public class AccessorioController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Accessorio> updateAccessorio (@RequestBody Accessorio accessorio){
+    public ResponseEntity<Accessorio> updateAccessorio (@Valid @RequestBody Accessorio accessorio){
         try {
             Accessorio accessorioUpdate = this.accessorioService.updateAccessorio(accessorio);
             return new ResponseEntity<>(accessorioUpdate, HttpStatus.OK);

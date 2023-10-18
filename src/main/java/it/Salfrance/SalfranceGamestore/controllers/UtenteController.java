@@ -24,7 +24,7 @@ public class UtenteController {
     }
 
     @PostMapping("/addutente")
-    ResponseEntity<Utente> addTodo(@Valid@RequestBody Utente utente){
+    ResponseEntity<Utente> addTodo(@Valid @RequestBody Utente utente){
         utenteConsole.addUtente(utente);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -47,7 +47,7 @@ public class UtenteController {
     }
 
     @PutMapping("/putmapping")
-    ResponseEntity<Utente> updateUtente(@RequestBody Utente utente){
+    ResponseEntity<Utente> updateUtente(@Valid @RequestBody Utente utente){
         utenteConsole.updateUtente(utente);
         return new ResponseEntity<>(HttpStatus.OK);
     }

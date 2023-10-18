@@ -2,6 +2,7 @@ package it.Salfrance.SalfranceGamestore.controllers;
 
 import it.Salfrance.SalfranceGamestore.models.Videogioco;
 import it.Salfrance.SalfranceGamestore.services.VideogiocoService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -23,13 +24,12 @@ public class VideogiocoController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<Videogioco>> getVideogiochi(@PageableDefault(page=0,size = 8)
-                                                               Pageable pageable){
+    public ResponseEntity<Page<Videogioco>> getVideogiochi(@PageableDefault(page=0,size = 8) Pageable pageable){
             return new ResponseEntity<>(this.videogiocoService.getAll(pageable), HttpStatus.OK);
     }
 
     @PostMapping("/new")
-    public ResponseEntity<?> addVideogioco(@RequestBody Videogioco videogioco) {
+    public ResponseEntity<?> addVideogioco(@Valid @RequestBody Videogioco videogioco) {
         try {
             Videogioco videogiocoAdded = this.videogiocoService.addVideogioco(videogioco);
             return new ResponseEntity<>(videogiocoAdded, HttpStatus.CREATED);
@@ -56,7 +56,7 @@ public class VideogiocoController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Videogioco> updateVideogioco (@RequestBody Videogioco videogioco){
+    public ResponseEntity<Videogioco> updateVideogioco (@Valid @RequestBody Videogioco videogioco){
         try {
             Videogioco videogiocoUpdate = this.videogiocoService.updateVideogioco(videogioco);
             return new ResponseEntity<>(videogiocoUpdate, HttpStatus.OK);

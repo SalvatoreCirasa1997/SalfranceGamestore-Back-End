@@ -3,6 +3,7 @@ package it.Salfrance.SalfranceGamestore.controllers;
 import it.Salfrance.SalfranceGamestore.models.Console;
 import it.Salfrance.SalfranceGamestore.models.SedieDaGaming;
 import it.Salfrance.SalfranceGamestore.services.SedieDaGamingService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -22,7 +23,7 @@ public class SedieDaGamingController {
     }
 
     @PostMapping("/addsedia")
-    ResponseEntity<SedieDaGaming> addSedia(@RequestBody SedieDaGaming sedieDaGaming){
+    ResponseEntity<SedieDaGaming> addSedia(@Valid @RequestBody SedieDaGaming sedieDaGaming){
         sediadagamingservice.saveSediaDaGaming(sedieDaGaming);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -40,7 +41,7 @@ public class SedieDaGamingController {
     }
 
     @PostMapping("/updatesedia")
-    ResponseEntity<SedieDaGaming> updateSediaDaGaming(@RequestBody SedieDaGaming sedieDaGaming){
+    ResponseEntity<SedieDaGaming> updateSediaDaGaming(@Valid @RequestBody SedieDaGaming sedieDaGaming){
         sediadagamingservice.updateSedieDaGaming(sedieDaGaming);
         return new ResponseEntity<>(HttpStatus.OK);
     }
