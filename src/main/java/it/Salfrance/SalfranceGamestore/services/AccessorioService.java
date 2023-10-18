@@ -1,6 +1,7 @@
 package it.Salfrance.SalfranceGamestore.services;
 
 import it.Salfrance.SalfranceGamestore.models.Accessorio;
+import it.Salfrance.SalfranceGamestore.models.Utente;
 import it.Salfrance.SalfranceGamestore.repositories.AccessorioRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +18,9 @@ public class AccessorioService {
         this.accessorioRepository = accessorioRepository;
     }
 
-    public Accessorio addAccessorio (Accessorio accessorio){return this.accessorioRepository.save(accessorio);}
+    public Accessorio addAccessorio (Utente utente, Accessorio accessorio){
+        return this.accessorioRepository.save(accessorio);
+    }
 
     public void removeAccessorio (Long id){this.accessorioRepository.deleteById(id);}
 
