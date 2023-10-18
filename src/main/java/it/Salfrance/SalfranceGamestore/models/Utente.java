@@ -30,10 +30,12 @@ public class Utente implements UserDetails {
     @Length(min = 3, max = 20)
     private String cognome;
 
+    @Column(unique = true)
     @Length(min = 3, max = 50)
     @NotBlank(message="è obbligatorio inserire la tua email")
     private String email;
 
+    @Column(unique = true)
     @Length(min = 3, max = 15)
     @NotBlank(message="è obbligatorio inserire il tuo username")
     private String username;
