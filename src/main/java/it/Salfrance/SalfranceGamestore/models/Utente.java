@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import it.Salfrance.SalfranceGamestore.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,9 +17,9 @@ import java.util.Collection;
 @Table(name="Utente")
 @Data
 public class Utente implements UserDetails {
+
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@NotBlank(message="la data di nascita deve essere per forza inserita")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataDiNascita;
 
@@ -30,15 +31,18 @@ public class Utente implements UserDetails {
     @Length(min = 3, max = 20)
     private String cognome;
 
+    @Column(unique = true)
     @Length(min = 3, max = 50)
-    @NotBlank(message="è obbligatorio inserire la tua email")
+    @NotBlank(message="è obbligatorio inserire la tua email oppure è già stata utilizzata")
     private String email;
 
+    @Column(unique = true)
     @Length(min = 3, max = 15)
-    @NotBlank(message="è obbligatorio inserire il tuo username")
+    @NotBlank(message="è obbligatorio inserire il tuo username oppure è già stato utilizzato")
     private String username;
 
     @NotBlank(message="è obbligatorio inserire la password")
+    @NotNull
     private String password;
 
     @Enumerated(EnumType.STRING)

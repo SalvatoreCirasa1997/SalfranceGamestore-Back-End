@@ -48,7 +48,7 @@ public class AuthService {
         userModel.setRole(Role.USER);
 
         Utente userNew = this.utenteService.addUtente(userModel);
-        String jwtToken = this.jwtService.generateToken((UserDetails) userNew);
+        String jwtToken = this.jwtService.generateToken(userNew);
         return new AuthenticationResponse(jwtToken);
     }
 }
